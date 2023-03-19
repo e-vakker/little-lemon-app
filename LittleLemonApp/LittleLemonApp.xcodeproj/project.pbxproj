@@ -12,7 +12,9 @@
 		EC6D801829C3C38A00A6275C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC6D801729C3C38A00A6275C /* Preview Assets.xcassets */; };
 		ECC2189329C643A600F25EE2 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC2189229C643A600F25EE2 /* Onboarding.swift */; };
 		ECC2189529C64E8100F25EE2 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC2189429C64E8100F25EE2 /* Styles.swift */; };
-		ECC2189729C65B1100F25EE2 /* HeroSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC2189629C65B1100F25EE2 /* HeroSection.swift */; };
+		ECC2189729C65B1100F25EE2 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC2189629C65B1100F25EE2 /* Menu.swift */; };
+		ECC2189929C7959100F25EE2 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC2189829C7959100F25EE2 /* Home.swift */; };
+		ECC2189D29C7A48900F25EE2 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC2189C29C7A48900F25EE2 /* UserProfile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,7 +24,9 @@
 		EC6D801729C3C38A00A6275C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ECC2189229C643A600F25EE2 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		ECC2189429C64E8100F25EE2 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
-		ECC2189629C65B1100F25EE2 /* HeroSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroSection.swift; sourceTree = "<group>"; };
+		ECC2189629C65B1100F25EE2 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		ECC2189829C7959100F25EE2 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		ECC2189C29C7A48900F25EE2 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +80,9 @@
 			isa = PBXGroup;
 			children = (
 				ECC2189229C643A600F25EE2 /* Onboarding.swift */,
-				ECC2189629C65B1100F25EE2 /* HeroSection.swift */,
+				ECC2189629C65B1100F25EE2 /* Menu.swift */,
+				ECC2189829C7959100F25EE2 /* Home.swift */,
+				ECC2189C29C7A48900F25EE2 /* UserProfile.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -153,8 +159,10 @@
 			files = (
 				ECC2189529C64E8100F25EE2 /* Styles.swift in Sources */,
 				ECC2189329C643A600F25EE2 /* Onboarding.swift in Sources */,
+				ECC2189D29C7A48900F25EE2 /* UserProfile.swift in Sources */,
+				ECC2189929C7959100F25EE2 /* Home.swift in Sources */,
 				EC6D801129C3C38900A6275C /* LittleLemonApp.swift in Sources */,
-				ECC2189729C65B1100F25EE2 /* HeroSection.swift in Sources */,
+				ECC2189729C65B1100F25EE2 /* Menu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

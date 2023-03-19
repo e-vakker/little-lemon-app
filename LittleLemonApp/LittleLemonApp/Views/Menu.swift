@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HeroSection: View {
+struct Menu: View {
     var body: some View {
         VStack(spacing: 0) {
             Text("Little Lemon")
@@ -28,7 +28,7 @@ struct HeroSection: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     Spacer()
                 }
-                Image("HeroImage")
+                Image("hero-image")
                     .resizable()
                     .aspectRatio( contentMode: .fill)
                     .frame(maxWidth: 120, maxHeight: 140)
@@ -44,6 +44,6 @@ struct HeroSection: View {
 
 struct HeroSection_Previews: PreviewProvider {
     static var previews: some View {
-        HeroSection()
+        Menu()
     }
 }
