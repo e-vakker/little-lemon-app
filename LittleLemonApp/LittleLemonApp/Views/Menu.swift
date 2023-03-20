@@ -9,40 +9,15 @@ import SwiftUI
 
 struct Menu: View {
     var body: some View {
-        VStack(spacing: 0) {
-            Text("Little Lemon")
-                .foregroundColor(Color.primaryColor2)
-                .font(.displayFont())
-                .frame(maxWidth: .infinity, alignment: .leading)
-            HStack {
-                VStack {
-                    Text("Chicago")
-                        .foregroundColor(.white)
-                        .font(.subTitleFont())
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Text("""
-                     We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.
-                     """)
-                    .foregroundColor(.white)
-                    .font(.leadText())
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    Spacer()
-                }
-                Image("hero-image")
-                    .resizable()
-                    .aspectRatio( contentMode: .fill)
-                    .frame(maxWidth: 120, maxHeight: 140)
-                    .clipShape(Rectangle())
-                    .cornerRadius(16)
-            }
+        VStack {
+            Header()
+            Hero()
+            Spacer()
         }
-        .padding()
-        .background(Color.primaryColor1)
-        .frame(maxWidth: .infinity, maxHeight: 200)
     }
 }
 
-struct HeroSection_Previews: PreviewProvider {
+struct Menu_Previews: PreviewProvider {
     static var previews: some View {
         Menu()
     }

@@ -11,30 +11,96 @@ struct UserProfile: View {
     
     @Environment(\.presentationMode) var presentation
     
-    @State var firstName = UserDefaults.standard.string(forKey: kFirstName) ?? ""
-    @State var lastName = UserDefaults.standard.string(forKey: kLastName) ?? ""
-    @State var email = UserDefaults.standard.string(forKey: kEmail) ?? ""
+    @State private var firstName = UserDefaults.standard.string(forKey: kFirstName) ?? ""
+    @State private var lastName = UserDefaults.standard.string(forKey: kLastName) ?? ""
+    @State private var email = UserDefaults.standard.string(forKey: kEmail) ?? ""
+    @State private var phoneNumber = UserDefaults.standard.string(forKey: kPhoneNumber) ?? ""
+    
+    @State private var orderStatuses = true
+    @State private var passwordChanges = true
+    @State private var specialOffers = true
+    @State private var newsletter = true
     
     var body: some View {
-        VStack {
-            Text("Personal information")
-            Image("profile-image-placeholder")
-            TextField("First Name", text: $firstName)
-                .textFieldStyle(.roundedBorder)
-                .padding()
-            TextField("Last Name", text: $lastName)
-                .textFieldStyle(.roundedBorder)
-                .padding()
-            TextField("e-mail", text: $email)
-                .textFieldStyle(.roundedBorder)
-                .padding()
-            Button("Logout") {
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(spacing: 5) {
+                VStack {
+                    Text("Avatar")
+                        .onboardingTextStyle()
+                    HStack(spacing: 0) {
+                        Image("profile-image-placeholder")
+                            .resizable()
+                            .aspectRatio( contentMode: .fit)
+                            .frame(maxHeight: 75)
+                            .clipShape(Circle())
+                            .padding(.trailing)
+                        Button("Change") { }
+                            .buttonStyle(ButtonStylePrimaryColor1())
+                        Button("Remove") { }
+                            .buttonStyle(ButtonStylePrimaryColorReverse())
+                        Spacer()
+                    }
+                }
+                
+                VStack{
+                    Text("First name")
+                        .onboardingTextStyle()
+                    TextField("First Name", text: $firstName)
+                }
+                
+                VStack {
+                    Text("Last name")
+                        .onboardingTextStyle()
+                    TextField("Last Name", text: $lastName)
+                    
+                }
+                
+                VStack {
+                    Text("E-mail")
+                        .onboardingTextStyle()
+                    TextField("E-mail", text: $email)
+                        .keyboardType(.emailAddress)
+                }
+                
+                VStack {
+                    Text("Phone number")
+                        .onboardingTextStyle()
+                    TextField("Phone number", text: $phoneNumber)
+                        .keyboardType(.phonePad)
+                }
+            }
+            .textFieldStyle(.roundedBorder)
+            .disableAutocorrection(true)
+            .padding()
+            
+            Text("Email notifications")
+                .font(.regularText())
+                .foregroundColor(.primaryColor1)
+            VStack {
+                Toggle("Order statuses", isOn: $orderStatuses)
+                Toggle("Password changes", isOn: $passwordChanges)
+                Toggle("Special offers", isOn: $specialOffers)
+                Toggle("Newsletter", isOn: $newsletter)
+            }
+            .padding()
+            .font(Font.leadText())
+            .foregroundColor(.primaryColor1)
+            
+            Button("Log out") {
                 UserDefaults.standard.set(false, forKey: kIsLoggedIn)
                 self.presentation.wrappedValue.dismiss()
             }
-            .buttonStyle(LittleLemonButtonStyle())
-            Spacer()
+            .buttonStyle(ButtonStyleYellowColorWide())
+            Spacer(minLength: 20)
+            HStack {
+                Button("Discard Changes") { }
+                    .buttonStyle(ButtonStylePrimaryColorReverse())
+                Button("Save changes") { }
+                    .buttonStyle(ButtonStylePrimaryColor1())
+            }
+            
         }
+        .navigationTitle(Text("Personal information"))
     }
 }
 

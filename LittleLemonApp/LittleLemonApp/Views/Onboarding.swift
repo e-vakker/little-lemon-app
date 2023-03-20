@@ -11,6 +11,7 @@ let kFirstName = "first name key"
 let kLastName = "last name key"
 let kEmail = "e-mail key"
 let kIsLoggedIn = "kIsLoggedIn"
+let kPhoneNumber = "phone number key"
 
 struct Onboarding: View {
     @State var firstName = ""
@@ -29,9 +30,8 @@ struct Onboarding: View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
-                    Image("logo")
-                        .padding(.bottom)
-                    Menu()
+                    Header()
+                    Hero()
                     VStack {
                         NavigationLink(destination: Home(), isActive: $isLoggedIn) {
                             
@@ -48,6 +48,7 @@ struct Onboarding: View {
                             .keyboardType(.emailAddress)
                     }
                     .textFieldStyle(.roundedBorder)
+                    .disableAutocorrection(true)
                     .padding()
                     
                     if errorMessageShow {
@@ -71,7 +72,7 @@ struct Onboarding: View {
                             isLoggedIn = true
                         }
                     }
-                    .buttonStyle(LittleLemonButtonStyle())
+                    .buttonStyle(ButtonStyleYellowColorWide())
                     
                     Spacer()
                 }
