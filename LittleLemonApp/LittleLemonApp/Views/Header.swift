@@ -12,24 +12,26 @@ struct Header: View {
     
     var body: some View {
         NavigationStack {
-            ZStack() {
-                Image("logo")
-                HStack {
-                    Spacer()
-                    if isLoggedIn {
-                        NavigationLink(destination: UserProfile()) {
-                            Image("profile-image-placeholder")
-                                .resizable()
-                                .aspectRatio( contentMode: .fit)
-                                .frame(maxHeight: 50)
-                                .clipShape(Circle())
-                                .padding(.trailing)
+            VStack {
+                ZStack {
+                    Image("logo")
+                    HStack {
+                        Spacer()
+                        if isLoggedIn {
+                            NavigationLink(destination: UserProfile()) {
+                                Image("profile-image-placeholder")
+                                    .resizable()
+                                    .aspectRatio( contentMode: .fit)
+                                    .frame(maxHeight: 50)
+                                    .clipShape(Circle())
+                                    .padding(.trailing)
+                            }
                         }
                     }
                 }
             }
-            .padding(.bottom)
         }
+        .frame(maxHeight: 60)
         .onAppear() {
             if UserDefaults.standard.bool(forKey: kIsLoggedIn) {
                 isLoggedIn = true

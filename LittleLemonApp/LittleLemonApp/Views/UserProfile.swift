@@ -101,6 +101,7 @@ struct UserProfile: View {
             
         }
         .navigationTitle(Text("Personal information"))
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
