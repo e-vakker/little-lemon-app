@@ -32,6 +32,7 @@ struct Header: View {
             }
         }
         .frame(maxHeight: 60)
+        .padding(.bottom)
         .onAppear() {
             if UserDefaults.standard.bool(forKey: kIsLoggedIn) {
                 isLoggedIn = true

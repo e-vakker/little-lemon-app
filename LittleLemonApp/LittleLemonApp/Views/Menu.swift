@@ -14,6 +14,8 @@ struct Menu: View {
     @State var drinksIsEnabled = true
     @State var specialsIsEnabled = true
     
+    @State var searchText = ""
+    
     let foodItems = [MenuItem(nameItem: "Greek Salad",
                               descriptionItem: "The famous greek salad of crispy lettuce, peppers, olives and our chic...",
                               priceItem: "$12.99",
@@ -34,6 +36,8 @@ struct Menu: View {
                 .font(.sectionTitle())
                 .foregroundColor(.highlightColor2)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top)
+                .padding(.leading)
             Spacer(minLength: 20)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 20) {
@@ -43,14 +47,18 @@ struct Menu: View {
                     Toggle("Specials", isOn: $specialsIsEnabled)
                 }
                 .toggleStyle(MyToggleStyle())
+                .padding(.horizontal)
             }
+            TextField("search...", text: $searchText)
+                .textFieldStyle(.roundedBorder)
+                .padding(.horizontal)
+            
             List(foodItems) { item in
                 FoodItem(menuItem: item)
             }
             .listStyle(.plain)
             Spacer()
         }
-        .padding()
     }
 }
 
