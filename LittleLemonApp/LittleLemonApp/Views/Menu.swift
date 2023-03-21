@@ -8,41 +8,61 @@
 import SwiftUI
 
 struct Menu: View {
+    
+    @State var startersIsEnabled = true
+    @State var dessertsIsEnabled = true
+    @State var drinksIsEnabled = true
+    @State var specialsIsEnabled = true
+    
+    @State var searchText = ""
+    
+    let foodItems = [MenuItem(nameItem: "Greek Salad",
+                              descriptionItem: "The famous greek salad of crispy lettuce, peppers, olives and our chic...",
+                              priceItem: "$12.99",
+                              pictureItem: "greek-salad"),
+                     MenuItem(nameItem: "Brushetta",
+                              descriptionItem: "Our Brushetta is made from grilled bread that has been smeared with g...",
+                              priceItem: "$16.99",
+                              pictureItem: "bruschetta"),
+                     MenuItem(nameItem: "Italian pasta",
+                              descriptionItem: "Delicious Italian pasta with tomato sauce and meatballs...",
+                              priceItem: "$18.99",
+                              pictureItem: "pasta")
+    ]
+    
     var body: some View {
-        VStack(spacing: 0) {
-            Text("Little Lemon")
-                .foregroundColor(Color.primaryColor2)
-                .font(.displayFont())
+        VStack {
+            Text("ORDER FOR DELIVERY!")
+                .font(.sectionTitle())
+                .foregroundColor(.highlightColor2)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            HStack {
-                VStack {
-                    Text("Chicago")
-                        .foregroundColor(.white)
-                        .font(.subTitleFont())
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Text("""
-                     We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.
-                     """)
-                    .foregroundColor(.white)
-                    .font(.leadText())
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    Spacer()
+                .padding(.top)
+                .padding(.leading)
+            Spacer(minLength: 20)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 20) {
+                    Toggle("Starters", isOn: $startersIsEnabled)
+                    Toggle("Desserts", isOn: $dessertsIsEnabled)
+                    Toggle("Drinks", isOn: $drinksIsEnabled)
+                    Toggle("Specials", isOn: $specialsIsEnabled)
                 }
-                Image("hero-image")
-                    .resizable()
-                    .aspectRatio( contentMode: .fill)
-                    .frame(maxWidth: 120, maxHeight: 140)
-                    .clipShape(Rectangle())
-                    .cornerRadius(16)
+                .toggleStyle(MyToggleStyle())
+                .padding(.horizontal)
             }
+            TextField("search...", text: $searchText)
+                .textFieldStyle(.roundedBorder)
+                .padding(.horizontal)
+            
+            List(foodItems) { item in
+                FoodItem(menuItem: item)
+            }
+            .listStyle(.plain)
+            Spacer()
         }
-        .padding()
-        .background(Color.primaryColor1)
-        .frame(maxWidth: .infinity, maxHeight: 200)
     }
 }
 
-struct HeroSection_Previews: PreviewProvider {
+struct Menu_Previews: PreviewProvider {
     static var previews: some View {
         Menu()
     }
