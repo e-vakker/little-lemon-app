@@ -19,8 +19,10 @@ struct Menu: View {
     
     @State var searchText = ""
     
+    @State var loaded = false
+    
     init() {
-        UITextField.appearance().clearButtonMode = .always
+        UITextField.appearance().clearButtonMode = .whileEditing
     }
     
     var body: some View {
@@ -57,7 +59,10 @@ struct Menu: View {
             }
         }
         .onAppear {
-            MenuList.getMenuData(viewContext: viewContext)
+            if !loaded {
+                MenuList.getMenuData(viewContext: viewContext)
+                loaded = true
+            }
         }
     }
     

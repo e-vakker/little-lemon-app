@@ -77,16 +77,13 @@
 		EC6D800F29C3C38900A6275C /* LittleLemonApp */ = {
 			isa = PBXGroup;
 			children = (
-				ECDA126429CB762500E4BDCB /* FetchedObjects.swift */,
-				ECDA126529CB762500E4BDCB /* Persistence.swift */,
 				ECC2189429C64E8100F25EE2 /* Styles.swift */,
-				ECC218A829CA52DB00F25EE2 /* MenuItem.swift */,
-				ECDA126829CB77D400E4BDCB /* MenuList.swift */,
+				ECB9DA3329CCF106009F997C /* CoreData */,
+				ECB9DA3229CCF0F8009F997C /* Structs */,
 				ECC2189129C6437C00F25EE2 /* Views */,
 				EC6D801029C3C38900A6275C /* LittleLemonApp.swift */,
 				EC6D801429C3C38A00A6275C /* Assets.xcassets */,
 				EC6D801629C3C38A00A6275C /* Preview Content */,
-				ECDA126A29CB8C2D00E4BDCB /* ExampleDatabase.xcdatamodeld */,
 			);
 			path = LittleLemonApp;
 			sourceTree = "<group>";
@@ -97,6 +94,25 @@
 				EC6D801729C3C38A00A6275C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ECB9DA3229CCF0F8009F997C /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				ECC218A829CA52DB00F25EE2 /* MenuItem.swift */,
+				ECDA126829CB77D400E4BDCB /* MenuList.swift */,
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
+		ECB9DA3329CCF106009F997C /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				ECDA126429CB762500E4BDCB /* FetchedObjects.swift */,
+				ECDA126529CB762500E4BDCB /* Persistence.swift */,
+				ECDA126A29CB8C2D00E4BDCB /* ExampleDatabase.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		ECC2189129C6437C00F25EE2 /* Views */ = {
