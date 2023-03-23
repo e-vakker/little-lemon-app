@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct Menu: View {
     
@@ -17,6 +18,10 @@ struct Menu: View {
     @State var specialsIsEnabled = true
     
     @State var searchText = ""
+    
+    init() {
+        UITextField.appearance().clearButtonMode = .always
+    }
     
     var body: some View {
         NavigationView {
@@ -38,7 +43,12 @@ struct Menu: View {
                     .toggleStyle(MyToggleStyle())
                     .padding(.horizontal)
                 }
-                FetchedObjects() { (dishes: [Dish]) in
+                TextField("Search menu", text: $searchText)
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.horizontal)
+                FetchedObjects(predicate: buildPredicate(),
+                               sortDescriptors: buildSortDescriptors()) {
+                    (dishes: [Dish]) in
                     List(dishes) { dish in
                         FoodItem(dish)
                     }
@@ -46,10 +56,20 @@ struct Menu: View {
                 }
             }
         }
-        .searchable(text: $searchText, prompt: "search...")
         .onAppear {
             MenuList.getMenuData(viewContext: viewContext)
         }
+    }
+    
+    func buildSortDescriptors() -> [NSSortDescriptor] {
+        return [NSSortDescriptor(key: "title",
+                                  ascending: true,
+                                  selector:
+                                    #selector(NSString.localizedStandardCompare))]
+    }
+    
+    func buildPredicate() -> NSPredicate {
+        return searchText == "" ? NSPredicate(value: true) : NSPredicate(format: "title CONTAINS[cd] %@", searchText)
     }
 }
 
