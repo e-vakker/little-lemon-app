@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct Menu: View {
+    
+    @Environment(\.managedObjectContext) private var viewContext
     
     @State var startersIsEnabled = true
     @State var dessertsIsEnabled = true
@@ -16,54 +19,62 @@ struct Menu: View {
     
     @State var searchText = ""
     
-    let foodItems = [MenuItem(nameItem: "Greek Salad",
-                              descriptionItem: "The famous greek salad of crispy lettuce, peppers, olives and our chic...",
-                              priceItem: "$12.99",
-                              pictureItem: "greek-salad"),
-                     MenuItem(nameItem: "Brushetta",
-                              descriptionItem: "Our Brushetta is made from grilled bread that has been smeared with g...",
-                              priceItem: "$16.99",
-                              pictureItem: "bruschetta"),
-                     MenuItem(nameItem: "Italian pasta",
-                              descriptionItem: "Delicious Italian pasta with tomato sauce and meatballs...",
-                              priceItem: "$18.99",
-                              pictureItem: "pasta")
-    ]
+    init() {
+        UITextField.appearance().clearButtonMode = .always
+    }
     
     var body: some View {
-        VStack {
-            Text("ORDER FOR DELIVERY!")
-                .font(.sectionTitle())
-                .foregroundColor(.highlightColor2)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top)
-                .padding(.leading)
-            Spacer(minLength: 20)
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 20) {
-                    Toggle("Starters", isOn: $startersIsEnabled)
-                    Toggle("Desserts", isOn: $dessertsIsEnabled)
-                    Toggle("Drinks", isOn: $drinksIsEnabled)
-                    Toggle("Specials", isOn: $specialsIsEnabled)
+        NavigationView {
+            VStack {
+                Text("ORDER FOR DELIVERY!")
+                    .font(.sectionTitle())
+                    .foregroundColor(.highlightColor2)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top)
+                    .padding(.leading)
+                Spacer(minLength: 20)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 20) {
+                        Toggle("Starters", isOn: $startersIsEnabled)
+                        Toggle("Desserts", isOn: $dessertsIsEnabled)
+                        Toggle("Drinks", isOn: $drinksIsEnabled)
+                        Toggle("Specials", isOn: $specialsIsEnabled)
+                    }
+                    .toggleStyle(MyToggleStyle())
+                    .padding(.horizontal)
                 }
-                .toggleStyle(MyToggleStyle())
-                .padding(.horizontal)
+                TextField("Search menu", text: $searchText)
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.horizontal)
+                FetchedObjects(predicate: buildPredicate(),
+                               sortDescriptors: buildSortDescriptors()) {
+                    (dishes: [Dish]) in
+                    List(dishes) { dish in
+                        FoodItem(dish)
+                    }
+                    .listStyle(.plain)
+                }
             }
-            TextField("search...", text: $searchText)
-                .textFieldStyle(.roundedBorder)
-                .padding(.horizontal)
-            
-            List(foodItems) { item in
-                FoodItem(menuItem: item)
-            }
-            .listStyle(.plain)
-            Spacer()
         }
+        .onAppear {
+            MenuList.getMenuData(viewContext: viewContext)
+        }
+    }
+    
+    func buildSortDescriptors() -> [NSSortDescriptor] {
+        return [NSSortDescriptor(key: "title",
+                                  ascending: true,
+                                  selector:
+                                    #selector(NSString.localizedStandardCompare))]
+    }
+    
+    func buildPredicate() -> NSPredicate {
+        return searchText == "" ? NSPredicate(value: true) : NSPredicate(format: "title CONTAINS[cd] %@", searchText)
     }
 }
 
 struct Menu_Previews: PreviewProvider {
     static var previews: some View {
-        Menu()
+        Menu().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }

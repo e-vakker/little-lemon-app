@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct Home: View {
+    
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor.white
+    }
+    
     var body: some View {
         TabView {
             MainScreen()
@@ -19,12 +24,13 @@ struct Home: View {
                     Label("Profile", systemImage: "square.and.pencil")
                 }
         }
+        .accentColor(Color.primaryColor1)
         .navigationBarBackButtonHidden()
     }
 }
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home()
+        Home().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }
