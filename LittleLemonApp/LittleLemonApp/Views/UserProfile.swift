@@ -9,8 +9,6 @@ import SwiftUI
 
 struct UserProfile: View {
     
-    @Environment(\.presentationMode) var presentation
-    
     @State private var firstName = UserDefaults.standard.string(forKey: kFirstName) ?? ""
     @State private var lastName = UserDefaults.standard.string(forKey: kLastName) ?? ""
     @State private var email = UserDefaults.standard.string(forKey: kEmail) ?? ""
@@ -21,8 +19,11 @@ struct UserProfile: View {
     @State private var specialOffers = true
     @State private var newsletter = true
     
+    @State private var isLoggedOut = false
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
+            NavigationLink(destination: Onboarding(), isActive: $isLoggedOut) { }
             VStack(spacing: 5) {
                 VStack {
                     Text("Avatar")
@@ -88,7 +89,7 @@ struct UserProfile: View {
             
             Button("Log out") {
                 UserDefaults.standard.set(false, forKey: kIsLoggedIn)
-                self.presentation.wrappedValue.dismiss()
+                isLoggedOut = true
             }
             .buttonStyle(ButtonStyleYellowColorWide())
             Spacer(minLength: 20)

@@ -11,10 +11,12 @@ struct MainScreen: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     var body: some View {
-        VStack {
-            Header()
-            Hero()
-            Menu()
+        NavigationStack {
+            VStack {
+                Header()
+                Hero()
+                Menu()
+            }
         }
     }
 }

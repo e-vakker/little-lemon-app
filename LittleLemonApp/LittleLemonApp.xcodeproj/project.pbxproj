@@ -10,6 +10,7 @@
 		EC6D801129C3C38900A6275C /* LittleLemonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6D801029C3C38900A6275C /* LittleLemonApp.swift */; };
 		EC6D801529C3C38A00A6275C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC6D801429C3C38A00A6275C /* Assets.xcassets */; };
 		EC6D801829C3C38A00A6275C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC6D801729C3C38A00A6275C /* Preview Assets.xcassets */; };
+		ECB9DA3529CE4A94009F997C /* DetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB9DA3429CE4A94009F997C /* DetailItem.swift */; };
 		ECC2189329C643A600F25EE2 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC2189229C643A600F25EE2 /* Onboarding.swift */; };
 		ECC2189529C64E8100F25EE2 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC2189429C64E8100F25EE2 /* Styles.swift */; };
 		ECC2189729C65B1100F25EE2 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC2189629C65B1100F25EE2 /* Menu.swift */; };
@@ -31,6 +32,7 @@
 		EC6D801029C3C38900A6275C /* LittleLemonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleLemonApp.swift; sourceTree = "<group>"; };
 		EC6D801429C3C38A00A6275C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC6D801729C3C38A00A6275C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ECB9DA3429CE4A94009F997C /* DetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItem.swift; sourceTree = "<group>"; };
 		ECC2189229C643A600F25EE2 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		ECC2189429C64E8100F25EE2 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		ECC2189629C65B1100F25EE2 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
@@ -77,16 +79,13 @@
 		EC6D800F29C3C38900A6275C /* LittleLemonApp */ = {
 			isa = PBXGroup;
 			children = (
-				ECDA126429CB762500E4BDCB /* FetchedObjects.swift */,
-				ECDA126529CB762500E4BDCB /* Persistence.swift */,
 				ECC2189429C64E8100F25EE2 /* Styles.swift */,
-				ECC218A829CA52DB00F25EE2 /* MenuItem.swift */,
-				ECDA126829CB77D400E4BDCB /* MenuList.swift */,
+				ECB9DA3329CCF106009F997C /* CoreData */,
+				ECB9DA3229CCF0F8009F997C /* Models */,
 				ECC2189129C6437C00F25EE2 /* Views */,
 				EC6D801029C3C38900A6275C /* LittleLemonApp.swift */,
 				EC6D801429C3C38A00A6275C /* Assets.xcassets */,
 				EC6D801629C3C38A00A6275C /* Preview Content */,
-				ECDA126A29CB8C2D00E4BDCB /* ExampleDatabase.xcdatamodeld */,
 			);
 			path = LittleLemonApp;
 			sourceTree = "<group>";
@@ -97,6 +96,25 @@
 				EC6D801729C3C38A00A6275C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ECB9DA3229CCF0F8009F997C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ECC218A829CA52DB00F25EE2 /* MenuItem.swift */,
+				ECDA126829CB77D400E4BDCB /* MenuList.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		ECB9DA3329CCF106009F997C /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				ECDA126429CB762500E4BDCB /* FetchedObjects.swift */,
+				ECDA126529CB762500E4BDCB /* Persistence.swift */,
+				ECDA126A29CB8C2D00E4BDCB /* ExampleDatabase.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		ECC2189129C6437C00F25EE2 /* Views */ = {
@@ -110,6 +128,7 @@
 				ECC218A429C7B84F00F25EE2 /* Header.swift */,
 				ECC218A629CA498900F25EE2 /* FoodItem.swift */,
 				ECC218AA29CA53DE00F25EE2 /* MainScreen.swift */,
+				ECB9DA3429CE4A94009F997C /* DetailItem.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -197,6 +216,7 @@
 				ECC2189929C7959100F25EE2 /* Home.swift in Sources */,
 				ECDA126629CB762500E4BDCB /* FetchedObjects.swift in Sources */,
 				EC6D801129C3C38900A6275C /* LittleLemonApp.swift in Sources */,
+				ECB9DA3529CE4A94009F997C /* DetailItem.swift in Sources */,
 				ECC2189729C65B1100F25EE2 /* Menu.swift in Sources */,
 				ECC218A929CA52DB00F25EE2 /* MenuItem.swift in Sources */,
 			);

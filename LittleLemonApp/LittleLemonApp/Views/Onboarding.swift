@@ -33,9 +33,7 @@ struct Onboarding: View {
                     Header()
                     Hero()
                     VStack {
-                        NavigationLink(destination: Home(), isActive: $isLoggedIn) {
-                            
-                        }
+                        NavigationLink(destination: Home(), isActive: $isLoggedIn) { }
                         Text("First name *")
                             .onboardingTextStyle()
                         TextField("First Name", text: $firstName)
@@ -99,6 +97,7 @@ struct Onboarding: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden()
         
     }
     
