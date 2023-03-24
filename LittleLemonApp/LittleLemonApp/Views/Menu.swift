@@ -13,9 +13,9 @@ struct Menu: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @State var startersIsEnabled = true
+    @State var mainsIsEnabled = true
     @State var dessertsIsEnabled = true
     @State var drinksIsEnabled = true
-    @State var specialsIsEnabled = true
     
     @State var searchText = ""
     
@@ -34,13 +34,12 @@ struct Menu: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top)
                     .padding(.leading)
-                Spacer(minLength: 20)
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
                         Toggle("Starters", isOn: $startersIsEnabled)
+                        Toggle("Mains", isOn: $mainsIsEnabled)
                         Toggle("Desserts", isOn: $dessertsIsEnabled)
                         Toggle("Drinks", isOn: $drinksIsEnabled)
-                        Toggle("Specials", isOn: $specialsIsEnabled)
                     }
                     .toggleStyle(MyToggleStyle())
                     .padding(.horizontal)
@@ -52,7 +51,9 @@ struct Menu: View {
                                sortDescriptors: buildSortDescriptors()) {
                     (dishes: [Dish]) in
                     List(dishes) { dish in
-                        FoodItem(dish)
+                        NavigationLink(destination: DetailItem(dish: dish)) {
+                            FoodItem(dish: dish)
+                        }
                     }
                     .listStyle(.plain)
                 }
@@ -73,8 +74,15 @@ struct Menu: View {
                                     #selector(NSString.localizedStandardCompare))]
     }
     
-    func buildPredicate() -> NSPredicate {
-        return searchText == "" ? NSPredicate(value: true) : NSPredicate(format: "title CONTAINS[cd] %@", searchText)
+    func buildPredicate() -> NSCompoundPredicate {
+        let search = searchText == "" ? NSPredicate(value: true) : NSPredicate(format: "title CONTAINS[cd] %@", searchText)
+        let starters = !startersIsEnabled ? NSPredicate(format: "category != %@", "starters") : NSPredicate(value: true)
+        let mains = !mainsIsEnabled ? NSPredicate(format: "category != %@", "mains") : NSPredicate(value: true)
+        let desserts = !dessertsIsEnabled ? NSPredicate(format: "category != %@", "desserts") : NSPredicate(value: true)
+        let drinks = !drinksIsEnabled ? NSPredicate(format: "category != %@", "drinks") : NSPredicate(value: true)
+
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [search, starters, mains, desserts, drinks])
+        return compoundPredicate
     }
 }
 

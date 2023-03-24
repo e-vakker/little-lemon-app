@@ -9,11 +9,7 @@ import SwiftUI
 
 struct FoodItem: View {
     
-    @ObservedObject private var dish:Dish
-    
-    init(_ dish:Dish) {
-        self.dish = dish
-    }
+    let dish:Dish
     
     var body: some View {
         HStack {
@@ -54,7 +50,7 @@ struct FoodItem_Previews: PreviewProvider {
     static let context = PersistenceController.shared.container.viewContext
     let dish = Dish(context: context)
     static var previews: some View {
-        FoodItem(oneDish())
+        FoodItem(dish: oneDish())
     }
     static func oneDish() -> Dish {
         let dish = Dish(context: context)
