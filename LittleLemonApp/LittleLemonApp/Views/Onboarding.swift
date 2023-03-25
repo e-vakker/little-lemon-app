@@ -7,22 +7,16 @@
 
 import SwiftUI
 
-let kFirstName = "first name key"
-let kLastName = "last name key"
-let kEmail = "e-mail key"
-let kIsLoggedIn = "kIsLoggedIn"
-let kPhoneNumber = "phone number key"
-
 struct Onboarding: View {
+    @StateObject private var viewModel = ViewModel()
+    
     @State var firstName = ""
     @State var lastName = ""
     @State var email = ""
+    @State var phoneNumber = ""
     
     @State var isKeyboardVisible = false
     @State var contentOffset: CGSize = .zero
-    
-    @State var errorMessageShow = false
-    @State var errorMessage = ""
     
     @State var isLoggedIn = false
     
@@ -49,9 +43,9 @@ struct Onboarding: View {
                     .disableAutocorrection(true)
                     .padding()
                     
-                    if errorMessageShow {
+                    if viewModel.errorMessageShow {
                         withAnimation() {
-                            Text(errorMessage)
+                            Text(viewModel.errorMessage)
                                 .foregroundColor(.red)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.leading)
@@ -59,11 +53,15 @@ struct Onboarding: View {
                     }
                     
                     Button("Register") {
-                        if validateUserInput(firstName: firstName, lastName: lastName, email: email) {
+                        if viewModel.validateUserInput(firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber) {
                             UserDefaults.standard.set(firstName, forKey: kFirstName)
                             UserDefaults.standard.set(lastName, forKey: kLastName)
                             UserDefaults.standard.set(email, forKey: kEmail)
                             UserDefaults.standard.set(true, forKey: kIsLoggedIn)
+                            UserDefaults.standard.set(true, forKey: kOrderStatuses)
+                            UserDefaults.standard.set(true, forKey: kPasswordChanges)
+                            UserDefaults.standard.set(true, forKey: kSpecialOffers)
+                            UserDefaults.standard.set(true, forKey: kNewsletter)
                             firstName = ""
                             lastName = ""
                             email = ""
@@ -101,36 +99,6 @@ struct Onboarding: View {
         
     }
     
-    func validateUserInput(firstName: String, lastName: String, email: String) -> Bool {
-        guard !firstName.isEmpty && !lastName.isEmpty && !email.isEmpty else {
-            errorMessage = "All fields are required"
-            errorMessageShow = true
-            return false
-        }
-        
-        guard email.contains("@") else {
-            errorMessage = "Invalid email address"
-            errorMessageShow = true
-            return false
-        }
-        
-        let email = email.split(separator: "@")
-        
-        guard email.count == 2 else {
-            errorMessage = "Invalid email address"
-            errorMessageShow = true
-            return false
-        }
-        
-        guard email[1].contains(".") else {
-            errorMessage = "Invalid email address"
-            errorMessageShow = true
-            return false
-        }
-        errorMessageShow = false
-        errorMessage = ""
-        return true
-    }
 }
 
 struct Onboarding_Previews: PreviewProvider {
