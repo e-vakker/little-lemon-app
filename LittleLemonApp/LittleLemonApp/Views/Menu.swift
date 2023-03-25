@@ -21,6 +21,8 @@ struct Menu: View {
     
     @State var loaded = false
     
+    @State var isKeyboardVisible = false
+    
     init() {
         UITextField.appearance().clearButtonMode = .whileEditing
     }
@@ -29,13 +31,18 @@ struct Menu: View {
         NavigationView {
             VStack {
                 VStack {
-                    Hero()
+                    if !isKeyboardVisible {
+                        withAnimation() {
+                            Hero()
+                                .frame(maxHeight: 180)
+                        }
+                    }
                     TextField("Search menu", text: $searchText)
                         .textFieldStyle(.roundedBorder)
                 }
                 .padding()
                 .background(Color.primaryColor1)
-                .frame(maxWidth: .infinity, maxHeight: 240)
+                
                 Text("ORDER FOR DELIVERY!")
                     .font(.sectionTitle())
                     .foregroundColor(.highlightColor2)
@@ -68,6 +75,17 @@ struct Menu: View {
             if !loaded {
                 MenuList.getMenuData(viewContext: viewContext)
                 loaded = true
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
+            withAnimation {
+                self.isKeyboardVisible = true
+            }
+            
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { notification in
+            withAnimation {
+                self.isKeyboardVisible = false
             }
         }
     }

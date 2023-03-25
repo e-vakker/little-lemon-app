@@ -43,19 +43,7 @@ struct DetailItem: View {
 }
 
 struct DetailItem_Previews: PreviewProvider {
-    static let context = PersistenceController.shared.container.viewContext
-    let dish = Dish(context: context)
-    
     static var previews: some View {
-        DetailItem(dish: oneDish())
-    }
-    
-    static func oneDish() -> Dish {
-        let dish = Dish(context: context)
-        dish.title = "Hummus"
-        dish.descriptionDish = "Test"
-        dish.price = "10"
-        dish.image = "https://github.com/Meta-Mobile-Developer-PC/Working-With-Data-API/blob/main/images/greekSalad.jpg?raw=true"
-        return dish
+        DetailItem(dish: PersistenceController.oneDish())
     }
 }
