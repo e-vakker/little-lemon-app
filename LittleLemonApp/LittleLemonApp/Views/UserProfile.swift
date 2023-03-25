@@ -92,6 +92,14 @@ struct UserProfile: View {
             
             Button("Log out") {
                 UserDefaults.standard.set(false, forKey: kIsLoggedIn)
+                UserDefaults.standard.set("", forKey: kFirstName)
+                UserDefaults.standard.set("", forKey: kLastName)
+                UserDefaults.standard.set("", forKey: kEmail)
+                UserDefaults.standard.set("", forKey: kPhoneNumber)
+                UserDefaults.standard.set(false, forKey: kOrderStatuses)
+                UserDefaults.standard.set(false, forKey: kPasswordChanges)
+                UserDefaults.standard.set(false, forKey: kSpecialOffers)
+                UserDefaults.standard.set(false, forKey: kNewsletter)
                 isLoggedOut = true
             }
             .buttonStyle(ButtonStyleYellowColorWide())

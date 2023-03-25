@@ -14,7 +14,6 @@ struct MainScreen: View {
         NavigationStack {
             VStack {
                 Header()
-                Hero()
                 Menu()
             }
         }

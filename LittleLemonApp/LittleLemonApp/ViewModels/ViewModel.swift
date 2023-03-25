@@ -35,6 +35,8 @@ class ViewModel: ObservableObject {
     @Published var errorMessageShow = false
     @Published var errorMessage = ""
     
+    @Published var searchText = ""
+    
     func validateUserInput(firstName: String, lastName: String, email: String, phoneNumber: String) -> Bool {
         guard !firstName.isEmpty && !lastName.isEmpty && !email.isEmpty else {
             errorMessage = "All fields are required"

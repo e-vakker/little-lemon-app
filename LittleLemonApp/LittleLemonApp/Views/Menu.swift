@@ -28,6 +28,14 @@ struct Menu: View {
     var body: some View {
         NavigationView {
             VStack {
+                VStack {
+                    Hero()
+                    TextField("Search menu", text: $searchText)
+                        .textFieldStyle(.roundedBorder)
+                }
+                .padding()
+                .background(Color.primaryColor1)
+                .frame(maxWidth: .infinity, maxHeight: 240)
                 Text("ORDER FOR DELIVERY!")
                     .font(.sectionTitle())
                     .foregroundColor(.highlightColor2)
@@ -44,9 +52,6 @@ struct Menu: View {
                     .toggleStyle(MyToggleStyle())
                     .padding(.horizontal)
                 }
-                TextField("Search menu", text: $searchText)
-                    .textFieldStyle(.roundedBorder)
-                    .padding(.horizontal)
                 FetchedObjects(predicate: buildPredicate(),
                                sortDescriptors: buildSortDescriptors()) {
                     (dishes: [Dish]) in
