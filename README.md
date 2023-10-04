@@ -16,3 +16,8 @@ The design of the Home screen is based on the following wireframe:
 
 ## Getting Started
 To run the app, you'll need to have Xcode installed. Clone the repository and open the project in Xcode. Then, build and run the app on a simulator or device.
+
+## Certificate
+![Coursera](https://github.com/e-vakker/little-lemon-app/assets/93353925/15def6d4-74cb-4b93-b958-719b62cf4a6c)
+
+
